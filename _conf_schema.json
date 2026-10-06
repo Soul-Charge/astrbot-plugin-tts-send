@@ -1,0 +1,77 @@
+{
+  "middleware_url": {
+    "description": "live-stream-chatbot 中间件合成接口地址",
+    "type": "string",
+    "hint": "AstrBot 在 Docker 中时请用 http://host.docker.internal:8899/synthesize",
+    "default": "http://host.docker.internal:8899/synthesize"
+  },
+  "timeout": {
+    "description": "请求 TTS 的超时时间（毫秒）",
+    "type": "int",
+    "default": 300000,
+    "hint": "冷启动或切换模型可能较慢，建议保持 300000"
+  },
+  "max_text_length": {
+    "description": "允许合成的最长文本长度",
+    "type": "int",
+    "default": 120,
+    "hint": "超过长度会截断"
+  },
+  "send_error_message": {
+    "description": "合成失败时是否向群里发送错误提示",
+    "type": "bool",
+    "default": true
+  },
+  "allow_non_admin": {
+    "description": "额外允许非管理员调用语音",
+    "type": "bool",
+    "default": false,
+    "hint": "关闭（默认）＝仅管理员可用；开启后其他用户也能用，但受下面的冷却与限额约束。管理员始终可用且不受限制"
+  },
+  "permission_denied_message": {
+    "description": "仅管理员模式下，非管理员调用时的提示",
+    "type": "text",
+    "default": "抱歉，只有管理员才能使用语音功能哦~",
+    "hint": "可用占位符：{limit} {window} {cooldown} {remaining}"
+  },
+  "non_admin_cooldown_enabled": {
+    "description": "对非管理员启用单句冷却",
+    "type": "bool",
+    "default": true
+  },
+  "non_admin_cooldown_seconds": {
+    "description": "非管理员单句冷却秒数",
+    "type": "int",
+    "default": 3,
+    "hint": "两次调用间隔小于该秒数时直接返回冷却提示"
+  },
+  "non_admin_cooldown_message": {
+    "description": "触发冷却时的提示",
+    "type": "text",
+    "default": "说得太快啦，请 {remaining} 秒后再试~",
+    "hint": "可用占位符：{remaining}（剩余秒数，向上取整）"
+  },
+  "non_admin_limit_enabled": {
+    "description": "对非管理员启用调用限额",
+    "type": "bool",
+    "default": true
+  },
+  "non_admin_limit_window_seconds": {
+    "description": "限额的滑动窗口秒数",
+    "type": "int",
+    "default": 60,
+    "hint": "与下一项组成「窗口内最多几句」"
+  },
+  "non_admin_limit_count": {
+    "description": "窗口内允许的最大句数",
+    "type": "int",
+    "default": 10,
+    "hint": "默认 1 分钟 10 句；超出后返回限额提示"
+  },
+  "non_admin_limit_message": {
+    "description": "触发限额时的提示",
+    "type": "text",
+    "default": "你 {window} 秒内已用满 {limit} 句啦，请 {remaining} 秒后再试~",
+    "hint": "可用占位符：{limit} {window} {remaining}"
+  }
+}
