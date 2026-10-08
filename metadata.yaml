@@ -4,4 +4,4 @@ desc: 使用 /角色说 文本（也兼容 /tts、/语音，支持 [情绪] 标�
 help: 群聊中发送 /樱羽艾玛说 你好 即可（需带唤醒前缀 /）；带情绪：/樱羽艾玛[开心]说 你好；也兼容 /tts 樱羽艾玛说 你好、/语音 樱羽艾玛说 你好。默认仅管理员可用。
 version: v1.4.0
 author: NaE
-repo: ""
+repo: "https://github.com/Soul-Charge/astrbot-plugin-tts-send"
